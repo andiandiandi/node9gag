@@ -1,0 +1,12 @@
+<div>
+    <div ng-repeat="post in posts">
+        <p>
+            {{post.title}}
+        </p>
+        <img ng-src="{{post.imagePath}}">
+        <div>
+            <span>{{post.username}}</span>
+            <span>posted {{getTime(post.postTime_ms)}} ago</span>
+        </div>
+    </div>
+</div>
