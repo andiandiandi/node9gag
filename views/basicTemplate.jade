@@ -1,0 +1,44 @@
+html(ng-app=ngapp)
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(type='text/javascript', src='https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css', rel='stylesheet', type='text/css')
+  body(ng-controller=ngcontroller,ng-init="username=#{JSON.stringify({username})}")
+    .navbar.navbar-default.navbar-static-top
+      .container(style='width:100%;background-color:#000')
+        .navbar-header()
+        #navbar-ex-collapse.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-left
+            li
+              div
+                a(href="#/")
+                  img(src='https://127.0.0.1:3001/images/logos/header/logo.png' style='margin-top:5px;')
+            li
+              a(href='#/front', style='color:#FFF;font-size:110%') Front
+            li
+              a(href='#/trending', style='color:#FFF;font-size:110%') Trending
+            li
+              a(href='#/fresh', style='color:#FFF;font-size:110%') Fresh
+          ul.nav.navbar-nav.navbar-right
+            li
+              img(src='https://127.0.0.1:3001/images/logos/header/search_icon.png', style='margin-top:5px;')
+            li
+              if loggedIn == true
+                a(href="#/user/#{username}" style='color:#FFF') #{username}
+              else
+                a(style='color:#FFF' ng-click="openLoginModal()") Log in
+            li
+              div(style='margin-top:8px;margin-right:8px;')
+                if loggedIn == true
+                  a(ng-click="logout()").btn.btn-primary logout
+                else 
+                  a(ng-click="openRegisterModal()").btn.btn-primary Sign up
+                
+  div(ng-view)
+        
+  script(src="javascripts/angular/lib/angular.min.js")
+  script(src="javascripts/angular/lib/angular-route.min.js")
+  block scripts
